@@ -8,29 +8,28 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import BasicExample from './src/BasicExample';
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import BasicExample from "./src/BasicExample";
+import SafeAreaExample from "./src/SafeAreaExample";
 
-declare const global: {HermesInternal: null | {}};
+declare const global: { HermesInternal: null | {} };
 
 const SCREENS = [
-  'Basic',
-  'SafeArea',
-  'ScrollView',
-  'FlatList',
-  'Navigation',
-  'MuxData',
+  "Basic",
+  "SafeArea",
+  "ScrollView",
+  "FlatList",
+  "Navigation",
+  "MuxData",
 ] as const;
 
 const App = () => {
@@ -47,25 +46,32 @@ const App = () => {
         <View
           style={{
             flex: 1,
-            width: '100%',
-            justifyContent: 'center',
+            width: "100%",
+            justifyContent: "center",
             padding: 16,
-          }}>
-          <TouchableOpacity
-            style={{...styles.btn, marginBottom: 16}}
-            onPress={() => setScreen('Basic')}>
-            <Text style={styles.text}>Basic</Text>
-          </TouchableOpacity>
+          }}
+        >
+          {SCREENS.map((screen) => (
+            <TouchableOpacity
+              key={screen}
+              style={{ ...styles.btn, marginBottom: 16 }}
+              onPress={() => setScreen(screen)}
+            >
+              <Text style={styles.text}>{screen}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       )}
-      {screen === 'Basic' && <BasicExample />}
+      {screen === "Basic" && <BasicExample />}
+      {screen === "SafeArea" && <SafeAreaExample />}
       {screen && (
         <TouchableOpacity
           onPress={() => setScreen(null)}
           style={{
             ...styles.btn,
             ...styles.back,
-          }}>
+          }}
+        >
           <Text style={styles.text}>Back to Main</Text>
         </TouchableOpacity>
       )}
@@ -75,38 +81,38 @@ const App = () => {
 
 const styles = StyleSheet.create({
   engine: {
-    position: 'absolute',
+    position: "absolute",
     right: 0,
   },
   btn: {
     borderRadius: 4,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.87)',
+    width: "100%",
+    backgroundColor: "tomato",
   },
   back: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 48,
     left: 16,
     right: 16,
-    width: 'auto',
-    backgroundColor: 'tomato',
+    width: "auto",
+    backgroundColor: "tomato",
     marginHorizontal: 16,
   },
   text: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   footer: {
     color: Colors.dark,
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: "600",
     padding: 4,
     paddingRight: 12,
-    textAlign: 'right',
+    textAlign: "right",
   },
 });
 
