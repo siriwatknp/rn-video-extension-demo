@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,94 +16,89 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import BasicExample from './src/BasicExample';
 
 declare const global: {HermesInternal: null | {}};
 
+const SCREENS = [
+  'Basic',
+  'SafeArea',
+  'ScrollView',
+  'FlatList',
+  'Navigation',
+  'MuxData',
+] as const;
+
 const App = () => {
+  const [screen, setScreen] = useState<typeof SCREENS[number] | null>(null);
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+      {global.HermesInternal == null ? null : (
+        <View style={styles.engine}>
+          <Text style={styles.footer}>Engine: Hermes</Text>
+        </View>
+      )}
+      {!screen && (
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            padding: 16,
+          }}>
+          <TouchableOpacity
+            style={{...styles.btn, marginBottom: 16}}
+            onPress={() => setScreen('Basic')}>
+            <Text style={styles.text}>Basic</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {screen === 'Basic' && <BasicExample />}
+      {screen && (
+        <TouchableOpacity
+          onPress={() => setScreen(null)}
+          style={{
+            ...styles.btn,
+            ...styles.back,
+          }}>
+          <Text style={styles.text}>Back to Main</Text>
+        </TouchableOpacity>
+      )}
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
   engine: {
     position: 'absolute',
     right: 0,
   },
-  body: {
-    backgroundColor: Colors.white,
+  btn: {
+    borderRadius: 4,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.87)',
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  back: {
+    position: 'absolute',
+    bottom: 48,
+    left: 16,
+    right: 16,
+    width: 'auto',
+    backgroundColor: 'tomato',
+    marginHorizontal: 16,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
+  text: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   footer: {
     color: Colors.dark,
