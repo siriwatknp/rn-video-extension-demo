@@ -14,6 +14,7 @@
     "@types/react-native-video": "^5.0.3",
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-safe-area-context": "^3.1.9",
     "react-native-svg": "^12.1.0",
     "react-native-video": "^5.1.1",
     "react-native-video-extension": "^0.1.3"
