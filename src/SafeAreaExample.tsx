@@ -21,10 +21,11 @@ const SafeAreaExample = ({}: SafeAreaExampleProps) => (
         >
           <YoutubePlayer
             mode="contain"
-            source={{
-              uri:
-                "https://stream.mux.com/Tyu80069gbkJR2uIYlz2xARq8VOl4dLg3.m3u8",
-            }}
+            source={require("./assets/horizontal_video.mp4")}
+            // source={{
+            //   uri:
+            //     "https://stream.mux.com/Tyu80069gbkJR2uIYlz2xARq8VOl4dLg3.m3u8",
+            // }}
           />
         </View>
       </SafeAreaView>

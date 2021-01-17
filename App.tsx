@@ -20,6 +20,8 @@ import {
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import BasicExample from "./src/BasicExample";
 import SafeAreaExample from "./src/SafeAreaExample";
+import ScrollViewExample from "./src/ScrollViewExample";
+import FlatListExample from "./src/FlatListExample";
 
 declare const global: { HermesInternal: null | {} };
 
@@ -64,6 +66,8 @@ const App = () => {
       )}
       {screen === "Basic" && <BasicExample />}
       {screen === "SafeArea" && <SafeAreaExample />}
+      {screen === "ScrollView" && <ScrollViewExample />}
+      {screen === "FlatList" && <FlatListExample />}
       {screen && (
         <TouchableOpacity
           onPress={() => setScreen(null)}
