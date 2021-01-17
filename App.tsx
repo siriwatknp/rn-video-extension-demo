@@ -27,6 +27,8 @@ import SafeAreaExample from "./src/SafeAreaExample";
 import ScrollViewExample from "./src/ScrollViewExample";
 import FlatListExample from "./src/FlatListExample";
 import ConnectInsetsExample from "./src/ConnectInsetsExample";
+import StackNavigationExample from "./src/StackNavigationExample";
+
 import { connectUseInsets } from "react-native-video-extension";
 
 declare const global: { HermesInternal: null | {} };
@@ -37,8 +39,7 @@ const SCREENS = [
   "ScrollView",
   "FlatList",
   "ConnectInsets",
-  "Navigation",
-  "MuxData",
+  "StackNavigation",
 ] as const;
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
   // this useEffect is for demo purpose only
   // don't use it in your application
   useEffect(() => {
-    if (screen === 'ConnectInsets') {
+    if (screen === "ConnectInsets") {
       connectUseInsets(useSafeAreaInsets);
       return () => {
         connectUseInsets(() => {
@@ -90,17 +91,18 @@ const App = () => {
       {screen === "ScrollView" && <ScrollViewExample />}
       {screen === "FlatList" && <FlatListExample />}
       {screen === "ConnectInsets" && <ConnectInsetsExample />}
-      {screen && (
-        <TouchableOpacity
-          onPress={() => setScreen(null)}
-          style={{
-            ...styles.btn,
-            ...styles.back,
-          }}
-        >
-          <Text style={styles.text}>Back to Main</Text>
-        </TouchableOpacity>
-      )}
+      {screen === "StackNavigation" && <StackNavigationExample />}
+      {/*{screen && (*/}
+      {/*  <TouchableOpacity*/}
+      {/*    onPress={() => setScreen(null)}*/}
+      {/*    style={{*/}
+      {/*      ...styles.btn,*/}
+      {/*      ...styles.back,*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <Text style={styles.text}>Back to Main</Text>*/}
+      {/*  </TouchableOpacity>*/}
+      {/*)}*/}
     </SafeAreaProvider>
   );
 };

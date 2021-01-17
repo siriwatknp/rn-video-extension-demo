@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -28,7 +28,7 @@ const ConnectInsetsExample = () => {
             <SafeAreaView
               style={{
                 flex: 1,
-                zIndex: fullscreen ? 1 : 0, // depends on your app
+                zIndex: fullscreen ? 2 : 0, // depends on your app
                 backgroundColor: fullscreen ? "#000" : "#fff",
               }}
             >
