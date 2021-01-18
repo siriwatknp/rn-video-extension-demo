@@ -92,17 +92,17 @@ const App = () => {
       {screen === "FlatList" && <FlatListExample />}
       {screen === "ConnectInsets" && <ConnectInsetsExample />}
       {screen === "StackNavigation" && <StackNavigationExample />}
-      {/*{screen && (*/}
-      {/*  <TouchableOpacity*/}
-      {/*    onPress={() => setScreen(null)}*/}
-      {/*    style={{*/}
-      {/*      ...styles.btn,*/}
-      {/*      ...styles.back,*/}
-      {/*    }}*/}
-      {/*  >*/}
-      {/*    <Text style={styles.text}>Back to Main</Text>*/}
-      {/*  </TouchableOpacity>*/}
-      {/*)}*/}
+      {screen && (
+        <TouchableOpacity
+          onPress={() => setScreen(null)}
+          style={{
+            ...styles.btn,
+            ...styles.back,
+          }}
+        >
+          <Text style={styles.text}>Back to Main</Text>
+        </TouchableOpacity>
+      )}
     </SafeAreaProvider>
   );
 };
